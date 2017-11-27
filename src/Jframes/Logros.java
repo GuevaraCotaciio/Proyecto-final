@@ -275,7 +275,6 @@ public class Logros extends javax.swing.JInternalFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -300,6 +299,7 @@ public class Logros extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
 
         jMenuItem1.setText("Modificar");
         jMenuItem1.setToolTipText("");
@@ -318,9 +318,8 @@ public class Logros extends javax.swing.JInternalFrame {
         setName("Seccion de "); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jDesktopPane1.setBackground(new java.awt.Color(102, 102, 102));
-        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LOGROS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione la materia" }));
@@ -342,13 +341,17 @@ public class Logros extends javax.swing.JInternalFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 170, 30));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 170, 30));
 
-        jLabel1.setText("Materia");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 120, 30));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("MATERIA:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 120, 30));
 
-        jLabel2.setText("Periodo");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 110, 30));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("PERIODO");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 110, 30));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el periodo" }));
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
@@ -356,10 +359,12 @@ public class Logros extends javax.swing.JInternalFrame {
                 jComboBox2ItemStateChanged(evt);
             }
         });
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 170, 30));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 170, 30));
 
-        jLabel3.setText("Tipo de logro");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 110, 30));
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("TIPO:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 110, 30));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el logro", "Academico", "Institucional" }));
         jComboBox3.addItemListener(new java.awt.event.ItemListener() {
@@ -367,27 +372,33 @@ public class Logros extends javax.swing.JInternalFrame {
                 jComboBox3ItemStateChanged(evt);
             }
         });
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 170, 30));
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 170, 30));
 
-        jLabel4.setText("Porcentaje");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 110, 30));
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("PORCENTAJE:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 110, 30));
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Descripcion");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 120, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 120, 30));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 460, 30));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 460, 30));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 70, 30));
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 70, 30));
 
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cantidad de logros");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 110, 30));
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 30, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 110, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 30, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -403,10 +414,12 @@ public class Logros extends javax.swing.JInternalFrame {
         jTable1.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 560, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 560, 130));
 
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Descripcion de logros");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 180, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 180, 30));
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -414,11 +427,13 @@ public class Logros extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 110, 40));
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, 40, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 110, 40));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, 40, 30));
 
-        jLabel10.setText("Curso");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 6, 90, 30));
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("CURSO:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 90, 30));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un curso" }));
         jComboBox4.addItemListener(new java.awt.event.ItemListener() {
@@ -426,14 +441,17 @@ public class Logros extends javax.swing.JInternalFrame {
                 jComboBox4ItemStateChanged(evt);
             }
         });
-        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 170, 30));
+        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 170, 30));
 
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Total:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 40, 30));
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 80, 30));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 40, 30));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 40, 30));
 
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Total:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 40, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 40, 30));
 
         jButton3.setText("Actualizar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -441,22 +459,42 @@ public class Logros extends javax.swing.JInternalFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 110, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 110, 40));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 490));
+        jLabel14.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("%");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 20, 30));
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 490));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+        String des, tipoL,  cod;
+        cod = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+        des = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 1);
+        tipoL = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 2);
+        String porc[] = ( (String)jTable1.getValueAt(jTable1.getSelectedRow(), 3) ).split(" ");
+        int por = Integer.valueOf(porc[0]);
+        
+//        JOptionPane.showMessageDialog(rootPane, "valores \n" + cod + "\n"+ des + "\n" + tipoL + "\n" + porc[0]);
+        
+        jComboBox3.setSelectedItem(tipoL);
+        jSpinner1.setValue(por);
+        jTextField1.setText(des);
+              
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jButton3.setEnabled(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
+        Cargar_Mat();
+    }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -477,10 +515,56 @@ public class Logros extends javax.swing.JInternalFrame {
 
         System.out.println(id_Logro + "\n" + descrip + "\n" + tip_Logro + "\n" + jSpinner1.getValue() + " %" + "\n" + Cod_Mat + "\n" + cod_per);
 
-//        cone.update("INSERT INTO logro VALUES(" +  id_Logro + descrip + tip_Logro + porcentaje + Cod_Mat + periodo + ")");
+        //        cone.update("INSERT INTO logro VALUES(" +  id_Logro + descrip + tip_Logro + porcentaje + Cod_Mat + periodo + ")");
 
-         porcentaje_Comp();
+        porcentaje_Comp();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
+
+        String nomL = (String)jComboBox3.getSelectedItem();
+
+        if(nomL == "academico"){
+            Tabla_A("");
+            cargar_porcen_A();
+            Count_Logros_A();
+
+        } else{
+            Tabla_B("");
+            cargar_porcen_B();
+            Count_Logros_B();
+        }
+    }//GEN-LAST:event_jComboBox3ItemStateChanged
+
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+
+        try {
+            String nom_per = (String) jComboBox2.getSelectedItem();
+            rs = cone.query("select id from periodo where nombre = '" + nom_per + "'");
+
+            if (rs.next()) {
+                cod_per = rs.getInt("id");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Logros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MousePressed
+
+    }//GEN-LAST:event_jComboBox1MousePressed
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+
+    }//GEN-LAST:event_jComboBox1MouseClicked
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
 
@@ -496,74 +580,7 @@ public class Logros extends javax.swing.JInternalFrame {
 
         cargar_Tabla("");
         validar_porc();
-
     }//GEN-LAST:event_jComboBox1ItemStateChanged
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
-        String des, tipoL,  cod;
-        cod = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-        des = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 1);
-        tipoL = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 2);
-        String porc[] = ( (String)jTable1.getValueAt(jTable1.getSelectedRow(), 3) ).split(" ");
-        int por = Integer.valueOf(porc[0]);
-        
-//        JOptionPane.showMessageDialog(rootPane, "valores \n" + cod + "\n"+ des + "\n" + tipoL + "\n" + porc[0]);
-        
-        jComboBox3.setSelectedItem(tipoL);
-        jSpinner1.setValue(por);
-        jTextField1.setText(des);
-              
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
-
-        try {
-            String nom_per = (String) jComboBox2.getSelectedItem();
-            rs = cone.query("select id from periodo where nombre = '" + nom_per + "'");
-
-            if (rs.next()) {
-                cod_per = rs.getInt("id");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Logros.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_jComboBox2ItemStateChanged
-
-    private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
-        Cargar_Mat();
-    }//GEN-LAST:event_jComboBox4ItemStateChanged
-
-    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
-        
-        String nomL = (String)jComboBox3.getSelectedItem();
-        
-        if(nomL == "academico"){
-            Tabla_A("");
-            cargar_porcen_A();
-            Count_Logros_A();
-            
-        } else{
-            Tabla_B("");
-            cargar_porcen_B();
-            Count_Logros_B();
-        }
-    }//GEN-LAST:event_jComboBox3ItemStateChanged
-
-    private void jComboBox1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MousePressed
-        
-    }//GEN-LAST:event_jComboBox1MousePressed
-
-    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
-        
-       
-    }//GEN-LAST:event_jComboBox1MouseClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jButton3.setEnabled(false);
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -573,12 +590,12 @@ public class Logros extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
