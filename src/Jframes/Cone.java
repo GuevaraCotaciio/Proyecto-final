@@ -63,11 +63,11 @@ public class Cone {
                 if (rs.next()) {
                     value = rs.getString("value");
                 }
-                
+
                 if (value.equals("true")) {
                     return contra;
                 }
-                
+
             } catch (SQLException e) {
                 System.out.println(e);
             }
@@ -77,76 +77,19 @@ public class Cone {
         return null;
     }
 
-    public DefaultTableModel tabla(String sql, String cod, String nom, JTable tabla) {
+    public DefaultTableModel tabla(String sql, JTable tabla) {
 
         try {
-
-            String titulo[] = {"Código", "Nombre"}, registro[] = new String[2];
-            modelo = new DefaultTableModel(null, titulo) {
-                @Override
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return false;
-                }
-            };
-
             ResultSet res = st.executeQuery(sql);
+            ResultSetMetaData data = res.getMetaData();
+            int cols = data.getColumnCount();
 
-            while (res.next()) {
-                registro[0] = res.getString(cod);
-                registro[1] = res.getString(nom);
+            String[] titulo = new String[cols], registro = new String[cols];
 
-                modelo.addRow(registro);
+            for (int i = 1; i <= cols; i++) {
 
+                titulo[(i - 1)] = data.getColumnName(i);
             }
-
-            tabla.setModel(modelo);
-
-            return modelo;
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return null;
-
-    }
-
-    public DefaultTableModel tabla3(String sql, String cod, String nom, String otro, JTable tabla) {
-
-        try {
-
-            String titulo[] = {"Código", "Nombre", otro}, registro[] = new String[3];
-            modelo = new DefaultTableModel(null, titulo) {
-                @Override
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return false;
-                }
-            };
-
-            ResultSet res = st.executeQuery(sql);
-
-            while (res.next()) {
-                registro[0] = res.getString(cod);
-                registro[1] = res.getString(nom);
-                registro[2] = res.getString(otro);
-
-                modelo.addRow(registro);
-
-            }
-
-            tabla.setModel(modelo);
-
-            return modelo;
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return null;
-
-    }
-
-    public DefaultTableModel tabla4(String sql, String codPri, String nomPri, String codSec, String nomSec, JTable tabla) {
-
-        try {
-
-            String titulo[] = {codPri, nomPri, codSec, nomSec}, registro[] = new String[4];
 
             modelo = new DefaultTableModel(null, titulo) {
                 @Override
@@ -155,19 +98,18 @@ public class Cone {
                 }
             };
 
-            ResultSet res = st.executeQuery(sql);
-
             while (res.next()) {
-                registro[0] = res.getString(codPri);
-                registro[1] = res.getString(nomPri);
-                registro[2] = res.getString(codSec);
-                registro[3] = res.getString(nomSec);
+
+                for (int i = 0; i < cols; i++) {
+                    registro[i] = res.getString(titulo[i]);
+                }
 
                 modelo.addRow(registro);
 
             }
 
             tabla.setModel(modelo);
+
             return modelo;
         } catch (SQLException ex) {
             System.out.println(ex);

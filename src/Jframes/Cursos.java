@@ -4,15 +4,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Cursos extends javax.swing.JInternalFrame {
 
     Cone cone;
     DefaultListModel model;
+    DefaultTableModel modelo;
+    String[] title = {"id", "Nombre", "CodDoc", "CodCur", "No.Est"};
 
     public Cursos() {
+
         initComponents();
+
         cone = new Cone();
+
         model = new DefaultListModel();
         jList1.setModel(model);
 
@@ -21,17 +27,43 @@ public class Cursos extends javax.swing.JInternalFrame {
     }
 
     private void actualizar() {
+
         try {
+
             cone.inicio("select max(id) from curso", "max(id)", jLabel11, jTextField2);
-            ResultSet rs = cone.query("SELECT u.id , p.nombre FROM usuario as u , persona as p where u.id = p.usuario_id and u.rol_id = 3");
+
+            cone.tabla("select *from curso", jTable1);
+
+            ResultSet res = cone.query("select g.id , g.nombre from grado as g left join curso as c on g.id = c.grado_id WHERE c.grado_id is Null");
+
+            jComboBox1.removeAllItems();
+            jComboBox1.addItem("---");
+
+            while (res.next()) {
+
+                String cod = res.getString("id");
+                String nom = res.getString("nombre");
+                jComboBox1.addItem(cod + " -  " + nom);
+            }
+
+            ResultSet rs = cone.query("SELECT distinct u.id , p.nombre "
+                    + "from usuario as u inner join persona as p  on  u.id = p.usuario_id  "
+                    + "inner join docente as d on d.id = u.id "
+                    + "left join  curso as c on d.id = c.docente_id "
+                    + "where u.rol_id = 3  and c.docente_id is null; ");
+
+            model.clear();
 
             while (rs.next()) {
-                model.addElement((rs.getString("nombre")));
 
+                String cod = rs.getString("id");
+                String nom = rs.getString("nombre");
+                model.addElement(cod + " - " + nom);
             }
 
             jButton1.setVisible(true);
             jButton2.setVisible(false);
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -90,20 +122,18 @@ public class Cursos extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("CURSOS");
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(248, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INGRESO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INGRESO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 18), new java.awt.Color(0, 0, 204))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel4.setBackground(new java.awt.Color(235, 243, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("COD:");
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 7, -1, 41));
 
@@ -113,30 +143,30 @@ public class Cursos extends javax.swing.JInternalFrame {
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 63, 30));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("CANTIDAD ESTU:");
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, 53));
+        jLabel8.setText("CANTIDAD ESTUDIANTES:");
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 53));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("4");
         jLabel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 11, 63, 30));
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 35, 490, -1));
 
-        jPanel5.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel5.setBackground(new java.awt.Color(235, 243, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("GRADO:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("NOMBRE:");
 
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -146,19 +176,12 @@ public class Cursos extends javax.swing.JInternalFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jList1);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("DOCENTE LIDER:");
 
-        jButton1.setBackground(new java.awt.Color(51, 153, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagen6.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -168,7 +191,6 @@ public class Cursos extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Imagen61.png"))); // NOI18N
         jButton2.setBorder(null);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -204,7 +226,7 @@ public class Cursos extends javax.swing.JInternalFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -228,20 +250,19 @@ public class Cursos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 490, 280));
 
-        jPanel3.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INGRESO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CUNSULTA", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 18), new java.awt.Color(0, 0, 204))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel6.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel6.setBackground(new java.awt.Color(235, 243, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BUSCAR", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("sansserif", 1, 12), new java.awt.Color(0, 51, 255))); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("CÓDIGO O NOMBRE:");
 
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -291,7 +312,7 @@ public class Cursos extends javax.swing.JInternalFrame {
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jScrollPane3.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 310, 180));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 310, 250));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -299,21 +320,30 @@ public class Cursos extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 440));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -323,33 +353,28 @@ public class Cursos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        int index = jComboBox1.getSelectedIndex();
+        int list = jList1.getSelectedIndex();
+        boolean space = cone.espacio(jTextField2.getText());
+        
+        if(index == 0 || list == -1 || space){
+            JOptionPane.showMessageDialog(rootPane, "Todos los campos deben ser seleccionados","Error de Seleccion",JOptionPane.WARNING_MESSAGE);
+        }else{
+            
+        
+        String[] nomb = ((String) jComboBox1.getSelectedItem()).split(" - ");
+        String[] codD = ((String) jList1.getSelectedValue()).split(" - ");
 
-        String cod = jLabel11.getText();
-        String nom = jTextField2.getText();
+        String Nombre = nomb[1] + " - " + jTextField2.getText();
+        String CodD = codD[0];
+        String CodG = nomb[0];
 
-        if (cone.espacio(nom)) {
+        cone.update("insert into curso values(NULL , '" + Nombre + "' , " + CodD + " , " + CodG + " , NULL)");
 
-            JOptionPane.showMessageDialog(rootPane, "No Dejar Espacios Vacios", "Error de Ingreso", JOptionPane.WARNING_MESSAGE);
+        actualizar();
 
-        } else {
-
-            try {
-
-                ResultSet res = cone.query("select * from cursos where nomCur='" + nom + "' || codCur=" + cod);
-
-                if (res.next()) {
-                    JOptionPane.showMessageDialog(rootPane, "Curso Ya Existe!", "Duplicasion", JOptionPane.WARNING_MESSAGE);
-
-                } else {
-
-                    cone.update("insert into cursos values ( " + cod + " ,'" + nom.toUpperCase() + "',  NULL)");
-                    actualizar();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
         }
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -468,6 +493,10 @@ public class Cursos extends javax.swing.JInternalFrame {
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4KeyReleased
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
